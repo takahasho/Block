@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\DX12.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\FieldPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\FieldVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\MeshPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\MeshVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\ObjPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\ObjVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\PmdPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\PmdVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\LineGeometryShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\LineVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\PointLinePixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\PointVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\TexturePixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\TextureVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\UIPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\UIVertexShader.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

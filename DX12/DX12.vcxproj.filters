@@ -25,9 +25,6 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{2e4869be-2d09-4ff3-9518-a1b5162cd646}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Effect">
-      <UniqueIdentifier>{23bc9c0e-7b0a-4b0f-9597-b9438fcef44f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{674a7eb4-9afd-4e09-a04b-54a1f24e2744}</UniqueIdentifier>
     </Filter>
@@ -89,9 +86,6 @@
     </ClInclude>
     <ClInclude Include="Code\GameObject\Texture.h">
       <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Effect\Effect.h">
-      <Filter>Effect</Filter>
     </ClInclude>
     <ClInclude Include="Code\Camera\Camera.h">
       <Filter>Camera</Filter>
@@ -158,12 +152,6 @@
     </ClInclude>
     <ClInclude Include="Code\Scene\ModelComponent.h">
       <Filter>Scene\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Scene\EffectComponent.h">
-      <Filter>Scene\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Effect\EffectStruct.h">
-      <Filter>Effect</Filter>
     </ClInclude>
     <ClInclude Include="Code\MATRIX.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -242,9 +230,6 @@
     <ClCompile Include="Code\GameObject\Texture.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Effect\Effect.cpp">
-      <Filter>Effect</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Camera\Camera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
@@ -303,9 +288,6 @@
       <Filter>Scene\Component</Filter>
     </ClCompile>
     <ClCompile Include="Code\Scene\ModelComponent.cpp">
-      <Filter>Scene\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Scene\EffectComponent.cpp">
       <Filter>Scene\Component</Filter>
     </ClCompile>
     <ClCompile Include="Code\MATRIX.cpp">

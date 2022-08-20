@@ -10,7 +10,6 @@
 #include "../GameObject/PmdModel.h"
 #include "../GameObject/ObjModel.h"
 #include "../GameObject/PointLine.h"
-#include "../Effect/Effect.h"
 #include "../Sound/CSoundManager.h"
 
 #include "ObjectCreate.h"
@@ -47,9 +46,6 @@ void Game::Initialize(WNDCLASSEX w)
 
 	// objƒ‚ƒfƒ‹“Ç‚İ‚İ—p‚Ì¶¬&‰Šú‰»
 	ObjModel::Create();
-
-	// Effect‚Ì¶¬&‰Šú‰»
-	Effect::Create();
 
 	// PointLine‚Ì¶¬&‰Šú‰»
 	PointLine::Create();
@@ -185,7 +181,6 @@ void Game::Shutdown()
 	Texture::Destroy();
 	PmdModel::Destroy();
 	ObjModel::Destroy();
-	Effect::Destroy();
 	PointLine::Destroy();
 	
 }
