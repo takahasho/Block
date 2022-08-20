@@ -1,0 +1,5 @@
+使いたいフォント(.ttf)をインストールする
+			↓
+DX12System.hのLoadAssets関数で読み込む
+			↓
+DrawTextFormat関数で表示できる

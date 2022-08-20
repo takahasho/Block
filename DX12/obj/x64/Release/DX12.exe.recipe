@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\DX12.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\FieldPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\FieldVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\MeshPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\MeshVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\ObjPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\ObjVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\PmdPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\PmdVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\LineGeometryShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\LineVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\PointLinePixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\PointVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\TexturePixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\TextureVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\UIPixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\kouki\Desktop\Block - コピー (3)\Block - コピー (3)\DX12\bin\x64\Release\UIVertexShader.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>
