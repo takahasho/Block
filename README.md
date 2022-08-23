@@ -4,6 +4,6 @@
 Bulletによる物理演算
 UI部分をWindowsアプリケーションに変える(UWP)
 # 参考している動画など
-Coding Ocean https://www.youtube.com/user/ABCMART1
-mはげ https://www.youtube.com/channel/UC8UofBEad8XUc6vE4nE2-Mw
-yttm-work　https://www.yttm-work.jp/
+Coding Ocean https://www.youtube.com/user/ABCMART1<br>
+mはげ https://www.youtube.com/channel/UC8UofBEad8XUc6vE4nE2-Mw<br>
+yttm-work　https://www.yttm-work.jp/<br>
