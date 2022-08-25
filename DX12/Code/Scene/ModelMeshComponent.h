@@ -5,6 +5,5 @@ class ModelMeshComponent :
 {
 public:
     ModelMeshComponent(class Actor* owner, int order = 100);
-    // 頂点情報法線情報の更新
-    void SetVerticesNormals() override;
+    std::vector<VECTOR> UpdateVertex();        // 頂点情報更新
 };

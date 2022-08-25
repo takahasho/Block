@@ -52,6 +52,9 @@
     <Filter Include="リソース ファイル\PointLine">
       <UniqueIdentifier>{317800ac-8b5f-424e-b1de-9aa1b72f09c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{17ef8092-d2e4-4bd3-a248-6a8c5c53b7e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\DX12System.h">
@@ -125,9 +128,6 @@
     </ClInclude>
     <ClInclude Include="Code\rand.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Scene\ColliderCalculation.h">
-      <Filter>Scene\Component</Filter>
     </ClInclude>
     <ClInclude Include="Code\Scene\ObjectComponent.h">
       <Filter>Scene\Component</Filter>
@@ -204,6 +204,9 @@
     <ClInclude Include="Code\MyCSV.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Bullet\Bullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\DX12System.cpp">
@@ -268,9 +271,6 @@
     </ClCompile>
     <ClCompile Include="Code\rand.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Scene\ColliderCalculation.cpp">
-      <Filter>Scene\Component</Filter>
     </ClCompile>
     <ClCompile Include="Code\Scene\ObjectComponent.cpp">
       <Filter>Scene\Component</Filter>
@@ -337,6 +337,9 @@
     </ClCompile>
     <ClCompile Include="Code\Scene\ImageComponent.cpp">
       <Filter>Scene\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Bullet\Bullet.cpp">
+      <Filter>Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

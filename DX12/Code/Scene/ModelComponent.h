@@ -6,6 +6,7 @@ class ModelComponent :
 {
 public:
     ModelComponent(class Actor* owner, int drawOrder = 100);
+    virtual void Update() override;
     void SetObjModel();
     void DeleteObjModel();
     void SetFileName(const char* fileName) { mFileName = fileName; }

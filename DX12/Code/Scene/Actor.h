@@ -47,6 +47,8 @@ public:
 	void SetCapsuleComponent(class CapsuleComponent* capsule) { mCapsule = capsule; }
 	class ModelMeshComponent* GetModelMeshComponent() { return mModelMesh; }
 	void SetModelMeshComponent(class ModelMeshComponent* modelMesh) { mModelMesh = modelMesh; }
+	class RigidBodyComponent* GetRigidBodyComponent() { return mRigidBody; }
+	void SetRigidBodyComponent(class RigidBodyComponent* rigitBody) { mRigidBody = rigitBody; }
 	std::vector<class ImageComponent*> GetImageComponent() { return mImage; }
 	void SetImageComponent(std::vector<class ImageComponent*> image) { mImage = image; }
 

@@ -7,6 +7,11 @@ ModelComponent::ModelComponent(Actor* actor, int drawOrder)
 {
 }
 
+void ModelComponent::Update()
+{
+	SetObjModel();
+}
+
 void ModelComponent::SetObjModel()
 {
 	if (strlen(mFileName) != 0)

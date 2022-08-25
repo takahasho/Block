@@ -29,7 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <PreferredToolArchitecture>
     </PreferredToolArchitecture>
@@ -37,14 +37,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <PreferredToolArchitecture>
     </PreferredToolArchitecture>
@@ -52,7 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -98,11 +98,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;EFK_EXAMPLE_ASSETS_DIR="C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";EFK_EXAMPLE_ASSETS_DIR_U16=u"C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;_WIN32_WINNT=0x0A00;_WIN7_PLATFORM_UPDATE;%(PreprocessorDefinitions);WIN32;_WINDOWS;EFK_EXAMPLE_ASSETS_DIR="C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";EFK_EXAMPLE_ASSETS_DIR_U16=u"C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>Code\その他;Code\Sound;Effekseer\include\Effekseer;Effekseer\include\EffekseerRendererDX12;Effekseer\include\Utils;Effekseer\include\3rdParty\LLGI\src;Effekseer\include\EffekseerSoundXAudio2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Code\Bullet\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
@@ -110,8 +110,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <DelayLoadDLLs>d3d12.dll</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;;%(AdditionalDependencies);%(AdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Code\Bullet\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Code\Bullet\lib\BulletCollision_debug.lib;Code\Bullet\lib\BulletDynamics_debug.lib;Code\Bullet\lib\LinearMath_debug.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;;%(AdditionalDependencies);%(AdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
       <TreatOutputAsContent>
@@ -134,11 +134,11 @@
       </FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;EFK_EXAMPLE_ASSETS_DIR="C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";EFK_EXAMPLE_ASSETS_DIR_U16=u"C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;_WIN32_WINNT=0x0A00;_WIN7_PLATFORM_UPDATE;%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;EFK_EXAMPLE_ASSETS_DIR="C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";EFK_EXAMPLE_ASSETS_DIR_U16=u"C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>Code\その他;Code\Sound;Effekseer\include\Effekseer;Effekseer\include\EffekseerRendererDX12;Effekseer\include\Utils;Effekseer\include\3rdParty\LLGI\src;Effekseer\include\EffekseerSoundXAudio2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Code\Bullet\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
@@ -150,7 +150,7 @@
       </OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <DelayLoadDLLs>d3d12.dll</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Code\Bullet\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;</AdditionalDependencies>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
@@ -170,13 +170,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_WIN32_WINNT=0x0A00;_WIN7_PLATFORM_UPDATE;_DEBUG;_LIB;_CRT_STDIO_ARBITRARY_WIDE_SPECIFIERS;%(PreprocessorDefinitions);WIN32;_WINDOWS;EFK_EXAMPLE_ASSETS_DIR="C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";EFK_EXAMPLE_ASSETS_DIR_U16=u"C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;_WIN32_WINNT=0x0A00;_WIN7_PLATFORM_UPDATE;BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;_WIN32_WINNT=0x0A00;_WIN7_PLATFORM_UPDATE;_DEBUG;_LIB;_CRT_STDIO_ARBITRARY_WIDE_SPECIFIERS;%(PreprocessorDefinitions);WIN32;_WINDOWS;EFK_EXAMPLE_ASSETS_DIR="C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";EFK_EXAMPLE_ASSETS_DIR_U16=u"C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>Effekseer\include\Effekseer;Effekseer\include\EffekseerRendererDX12;Effekseer\include\Utils;Effekseer\include\3rdParty\LLGI\src;Effekseer\include\EffekseerSoundXAudio2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Code\Bullet\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -185,8 +185,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <DelayLoadDLLs>d3d12.dll</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;d3dcompiler.lib;d2d1.lib;dwrite.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;%(AdditionalDependencies);%(AdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Code\Bullet\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Code\Bullet\lib\BulletCollision_vs2010_x64_debug.lib;Code\Bullet\lib\BulletDynamics_vs2010_x64_debug.lib;Code\Bullet\lib\LinearMath_vs2010_x64_debug.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;d3dcompiler.lib;d2d1.lib;dwrite.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <CustomBuildStep>
@@ -210,11 +210,11 @@
       </FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_WIN32_WINNT=0x0A00;_WIN7_PLATFORM_UPDATE;_LIB;_CRT_STDIO_ARBITRARY_WIDE_SPECIFIERS;%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;EFK_EXAMPLE_ASSETS_DIR="C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";EFK_EXAMPLE_ASSETS_DIR_U16=u"C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;_WIN32_WINNT=0x0A00;_WIN7_PLATFORM_UPDATE;BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;_WIN32_WINNT=0x0A00;_WIN7_PLATFORM_UPDATE;_LIB;_CRT_STDIO_ARBITRARY_WIDE_SPECIFIERS;%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;EFK_EXAMPLE_ASSETS_DIR="C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";EFK_EXAMPLE_ASSETS_DIR_U16=u"C:/Users/kouki/Desktop/EffekseerRuntime162b (1)/Examples/Resources/";CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>Effekseer\include\Effekseer;Effekseer\include\EffekseerRendererDX12;Effekseer\include\Utils;Effekseer\include\3rdParty\LLGI\src;Effekseer\include\EffekseerSoundXAudio2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Code\Bullet\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -230,7 +230,7 @@
       </OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <DelayLoadDLLs>d3d12.dll</DelayLoadDLLs>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Code\Bullet\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;d3dcompiler.lib;d2d1.lib;dwrite.lib;d3d11.lib;d3d12.lib;dxgi.lib;dxguid.lib</AdditionalDependencies>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
@@ -249,6 +249,7 @@
     </CustomBuild>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Code\Bullet\Bullet.h" />
     <ClInclude Include="Code\Camera\Camera.h" />
     <ClInclude Include="Code\d3dx12.h" />
     <ClInclude Include="Code\DX12System.h" />
@@ -279,7 +280,6 @@
     <ClInclude Include="Code\Scene\ModelMeshComponent.h" />
     <ClInclude Include="Code\Scene\ObjectCreate.h" />
     <ClInclude Include="Code\Scene\PointLineComponent.h" />
-    <ClInclude Include="Code\Scene\ColliderCalculation.h" />
     <ClInclude Include="Code\Scene\PlayerInputComponent.h" />
     <ClInclude Include="Code\Scene\ModelComponent.h" />
     <ClInclude Include="Code\Scene\MoveComponent.h" />
@@ -301,6 +301,7 @@
     <ClInclude Include="Code\WinMain.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Code\Bullet\Bullet.cpp" />
     <ClCompile Include="Code\Camera\Camera.cpp" />
     <ClCompile Include="Code\DX12System.cpp" />
     <ClCompile Include="Code\GameObject\BaseClass.cpp" />
@@ -327,7 +328,6 @@
     <ClCompile Include="Code\Scene\ObjectCreate.cpp" />
     <ClCompile Include="Code\Scene\ObjectCreateStruct.cpp" />
     <ClCompile Include="Code\Scene\PointLineComponent.cpp" />
-    <ClCompile Include="Code\Scene\ColliderCalculation.cpp" />
     <ClCompile Include="Code\Scene\PlayerInputComponent.cpp" />
     <ClCompile Include="Code\Scene\ModelComponent.cpp" />
     <ClCompile Include="Code\Scene\MoveComponent.cpp" />

@@ -10,11 +10,9 @@ ColliderComponent::ColliderComponent(Actor* owner, int order)
 	, mSaveHeight(1)
 	, mSaveRadius(1)
 	, mSaveState(GameState::ETitle)
-	, mSize(VECTOR(1, 1, 1))
 	, mType(ColliderType::Box)
 	, mMaxDistance(0)
 {
-	mLine = new PointLineComponent(owner);
 }
 
 ColliderComponent::~ColliderComponent()
@@ -23,7 +21,6 @@ ColliderComponent::~ColliderComponent()
 	{
 		delete f;
 	}
-	mLine->DeleteLine();
 }
 
 // このコンポーネントの更新処理

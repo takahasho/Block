@@ -89,42 +89,27 @@ public:
     ~ColliderComponent();
     // このコンポーネントの更新処理
     void Update() override;
-    void SetSize(VECTOR size) { mSize = size; }
     void SetHeight(float height) { mHeight = height; }
     void SetRadius(float radius) { mRadius = radius; }
-    void SetAxizeX(const VECTOR& axiz) { mAxizX = axiz; }
-    void SetAxizeY(const VECTOR& axiz) { mAxizY = axiz; }
-    void SetAxizeZ(const VECTOR& axiz) { mAxizZ = axiz; }
     void SetPositionGap(const VECTOR& posgap) { mPositionGap = posgap; }
-    VECTOR GetSize() const { return mSize; }
     float GetHeight() const { return mHeight; }
     float GetRadius() const { return mRadius; }
     VECTOR GetPositionGap() { return mPositionGap; }
     VECTOR GetRotation();
-    VECTOR GetAxizeX() const { return mAxizX; }
-    VECTOR GetAxizeY() const { return mAxizY; }
-    VECTOR GetAxizeZ() const { return mAxizZ; }
     std::vector<FaceInfo*> GetFace() const { return mFaces; }
     ColliderType GetColliderType() const { return mType; }
     VECTOR GetCenter();
     float GetMaxDistance() { return mMaxDistance; }
 protected:
-    class PointLineComponent* mLine;
-    VECTOR mSize;
     float mHeight;
     float mRadius;
-    VECTOR mPositionGap;
-    // 分離軸
-    VECTOR mAxizX;
-    VECTOR mAxizY;
-    VECTOR mAxizZ;
+    VECTOR mPositionGap;    
     // 原点から一番離れている頂点の距離
     float mMaxDistance;
     // Vertices
     const int polygonNum = 3;		// 面形成のポリゴン数
 
     std::vector<VECTOR> mBaseVertices;  // 頂点の基準位置
-    std::vector<VECTOR> mVertices;
 
     std::vector<FaceInfo*> mFaces;    // 面計算するときに使う
     VECTOR mSavePos;

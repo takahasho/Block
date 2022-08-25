@@ -10,6 +10,7 @@
 #include "../GameObject/PmdModel.h"
 #include "../GameObject/ObjModel.h"
 #include "../GameObject/PointLine.h"
+#include "../Bullet/Bullet.h"
 #include "../Sound/CSoundManager.h"
 
 #include "ObjectCreate.h"
@@ -52,6 +53,9 @@ void Game::Initialize(WNDCLASSEX w)
 
 	 // 疑似乱数生成
 	setRandSeed(timeGetTime());
+
+	// 物理エンジン生成
+	bullet = new Bullet();
 
 	// ファイル読み込み
 	LoadFile();
@@ -173,6 +177,7 @@ void Game::Shutdown()
 	SAFE_DELETE(pSoundManager);
 	delete mCsvText;
 	delete mObjectCreate;
+	delete bullet;
 	DInput::Destroy();
 	Camera::Destroy();
 	DX12::Destroy();
@@ -181,8 +186,7 @@ void Game::Shutdown()
 	Texture::Destroy();
 	PmdModel::Destroy();
 	ObjModel::Destroy();
-	PointLine::Destroy();
-	
+	PointLine::Destroy();	
 }
 
 void Game::AddActor(Actor* actor)

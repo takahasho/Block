@@ -15,6 +15,11 @@ ObjectComponent::~ObjectComponent()
 	
 }
 
+void ObjectComponent::Update()
+{
+	SetObject();
+}
+
 void ObjectComponent::SetObject()
 {
 	if (mObjectType != ObjectType::TypeNone)

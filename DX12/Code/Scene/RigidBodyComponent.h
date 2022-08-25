@@ -1,18 +1,17 @@
 #pragma once
 #include "MoveComponent.h"
-
+#include "../Bullet/Bullet.h"
 class RigidBodyComponent :
 	public MoveComponent
 {
 public:
 	RigidBodyComponent(class Actor* owner);
+	void AddRigidBody();				// RigidBodyの情報更新
 private:
 	void Update() override;
-	class ColliderComponent* UseCollider(class Actor* actor);       // actorが使っているコライダー
-	void PhysicalCalculus(ColliderComponent* collider);             // 壁ずりベクター計算
 private:
-	float mGravity;				// 重力
+	btRigidBody* mRigidBody;		// 物理エンジンから受け取る情報
+	btVector3 mInitialPosition;
+	btQuaternion mInitialRotation;
 	float mMass;				// 質量
-	VECTOR mPrevVector;         // 前フレームの進行ベクトル
-	float mFreeFallTime;		// 自由落下時間
 };

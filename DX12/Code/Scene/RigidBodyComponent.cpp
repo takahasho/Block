@@ -1,175 +1,97 @@
 #include "RigidBodyComponent.h"
-#include "../Input/DInput.h"
 #include "Actor.h"
-#include "../VECTOR.h"
 #include "Game.h"
-#include "ColliderCalculation.h"
 #include "BoxComponent.h"
 #include "CapsuleComponent.h"
 #include "ModelMeshComponent.h"
-RigidBodyComponent::RigidBodyComponent(Actor* owner)
-	:MoveComponent(owner), mGravity(0.098), mMass(2), mPrevVector(VECTOR(0, 0, 0)), mFreeFallTime(0)
-{
+#include "../VECTOR.h"
 
+RigidBodyComponent::RigidBodyComponent(Actor* owner)
+	:MoveComponent(owner), mMass(2), mRigidBody()
+{
+	btVector3 pos = btVector3(btScalar(mOwner->GetPosition().x), btScalar(mOwner->GetPosition().y), btScalar(mOwner->GetPosition().z));
+	mInitialPosition = pos;
+	btQuaternion qrot;
+	qrot.setEulerZYX(XMConvertToRadians(mOwner->GetRotation().z), XMConvertToRadians(mOwner->GetRotation().y), XMConvertToRadians(mOwner->GetRotation().x));
+	mInitialRotation = qrot;
 }
 
 void RigidBodyComponent::Update()
 {
 	if (mOwner->GetGame()->GetGameState() == GameState::EPlay)
 	{
-		ColliderComponent* collider = UseCollider(mOwner);
-		if (collider)
+		auto p = mOwner->GetPosition();
+		btTransform trans;
+		if (mRigidBody && mRigidBody->getMotionState())
 		{
-			PhysicalCalculus(collider);
+			mRigidBody->getMotionState()->getWorldTransform(trans);
 		}
+		else
+		{
+			trans = mRigidBody->getWorldTransform();
+		}
+		VECTOR pos = VECTOR(float(trans.getOrigin().getX()), float(trans.getOrigin().getY()), float(trans.getOrigin().getZ()));
+		mOwner->SetPosition(pos);
+		btScalar x;
+		btScalar y;
+		btScalar z;
+		trans.getRotation().getEulerZYX(z, y, x);
+		VECTOR rotation = VECTOR(XMConvertToDegrees(x), XMConvertToDegrees(y), XMConvertToDegrees(z));
+		mOwner->SetRotation(rotation);
 	}
-	// タイトル、クリエイティブモードで初期化
-	else if (mOwner->GetGame()->GetGameState() == GameState::ECreative || mOwner->GetGame()->GetGameState() == GameState::ETitle)
+	else if (mOwner->GetGame()->GetGameState() == GameState::ECreative)
 	{
-		mFreeFallTime = 0;
-		mJumpVector = 0;
-		mOwner->SetJumpFlg(false);
-		mOwner->SetProgressVector(VECTOR(0, 0, 0));
+		btVector3 pos = btVector3(btScalar(mOwner->GetPosition().x), btScalar(mOwner->GetPosition().y), btScalar(mOwner->GetPosition().z));
+		mInitialPosition = pos;
+		btQuaternion qrot;
+		qrot.setEulerZYX(XMConvertToRadians(mOwner->GetRotation().z), XMConvertToRadians(mOwner->GetRotation().y), XMConvertToRadians(mOwner->GetRotation().x));
+		mInitialRotation = qrot;
 	}
 }
-// actorが使っているコライダー
-ColliderComponent* RigidBodyComponent::UseCollider(Actor* actor)
+
+void RigidBodyComponent::AddRigidBody()
 {
-	// どのコンポーネントが取り付けられているか
-	if (actor->GetBoxComponent())
+	btCollisionShape* shape = {};
+	if (mOwner->GetBoxComponent())
 	{
-		return actor->GetBoxComponent();
+		shape = new btBoxShape(btVector3(btScalar(mOwner->GetScale().x / 2), btScalar(mOwner->GetScale().y / 2), btScalar(mOwner->GetScale().z / 2)));
 	}
-	else if (actor->GetCapsuleComponent())
+	else if (mOwner->GetCylinderComponent())
 	{
-		return actor->GetCapsuleComponent();
+		shape = new btCylinderShapeZ(btVector3(btScalar(mOwner->GetScale().x / 2), btScalar(mOwner->GetScale().y / 2), btScalar(mOwner->GetScale().z / 2)));
 	}
-	else if (actor->GetModelMeshComponent())
+	else if (mOwner->GetCapsuleComponent())
 	{
-		return actor->GetModelMeshComponent();
+		shape = new btCapsuleShape(btScalar(mOwner->GetCapsuleComponent()->GetRadius() / 2), btScalar(mOwner->GetCapsuleComponent()->GetHeight() / 2));
 	}
-	return nullptr;
-}
-// 壁ずりベクター計算
-void RigidBodyComponent::PhysicalCalculus(ColliderComponent* collider)
-{
-	// 落下時間
-	mFreeFallTime += g_elapsedTime;
-
-	// プレイヤーの現在地
-	VECTOR oldPos = mOwner->GetPosition();
-
-	// 進行ベクトル
-	VECTOR ProgressVector = mOwner->GetProgressVector();
-
-	// ジャンプボタンが押されたら
-	if (mOwner->GetJumpFlg())
+	else if (mOwner->GetModelMeshComponent())
 	{
-		float saveVec = mJumpVector;
-		mJumpVector = mFreeFallTime * mJumpPower;
+		std::vector<VECTOR> vertices = mOwner->GetModelMeshComponent()->UpdateVertex();
+		btConvexHullShape* convexHullShape = new btConvexHullShape();
+		btScalar scaling(1);
 
-		ProgressVector += VECTOR(0, mJumpVector - saveVec, 0);
-	}
+		convexHullShape->setLocalScaling(btVector3(scaling, scaling, scaling));
 
-	ProgressVector += VECTOR(0, -(mGravity * mMass * mFreeFallTime * mFreeFallTime), 0);
-	// プレイヤーの次のフレームの位置
-	VECTOR nowPos = mOwner->GetPosition() + ProgressVector;
-
-	// --------- 壁ずりベクトル -----------
-	
-	if (ProgressVector != VECTOR(0, 0, 0))
-	{
-		// このフレームで進む進行ベクトル分動かす
-		mOwner->SetPosition(nowPos);
-		VECTOR rotation;
-		ColliderComponent* OpponentjCollider;
-		// ---------- オブジェクトとの当たり判定 ----------
-		for (Actor* actor : mOwner->GetGame()->GetActors())
+		for (VECTOR vertex:vertices)
 		{
-			if (actor != mOwner)
-			{
-				OpponentjCollider = UseCollider(actor);
-				if (OpponentjCollider)
-				{
-					// 二つのオブジェクトの距離
-					float distance = distance_of(collider->GetCenter(), OpponentjCollider->GetCenter());
-					if (distance < (collider->GetMaxDistance() + OpponentjCollider->GetMaxDistance()))
-					{
-						OpponentjCollider->SetVerticesNormals();
-						collider->SetVerticesNormals();
-						HitCheck_Collider(collider, OpponentjCollider, ProgressVector);
-					}
-				}
-			}
+			btVector3 vtx(vertex.x, vertex.y, vertex.z);			
+			convexHullShape->addPoint(vtx * btScalar(1. / scaling));
 		}
-		//if (rotation != VECTOR(0, 0, 0))
-		//{
-		//	VECTOR r = mOwner->GetRotation();
-		//	rotation = r + rotation;
-		//	mOwner->SetRotation(rotation);
-		//}
-		// 進めたベクトル分戻す
-		mOwner->SetPosition(oldPos);
 
-		// 進行ベクトルを決定する
-		mOwner->SetProgressVector(ProgressVector);
+		convexHullShape->initializePolyhedralFeatures();
+
+		float mass = 1.f;
+		btVector3 localInertia(0, 0, 0);
+		convexHullShape->calculateLocalInertia(mass, localInertia);
+
+		shape = convexHullShape;
 	}
-
-	// 落下していなかったら0
-	if (ProgressVector.y == 0)
+	if (mOwner->GetPosition().y == -0.5f)
 	{
-		mFreeFallTime = 0;
-		mJumpVector = 0;
-		mOwner->SetJumpFlg(false);
+		mRigidBody = mOwner->GetGame()->GetBullet()->CreateShape(shape, mInitialPosition, mInitialRotation, btScalar(0.0f), btScalar(1));
 	}
-
-	//	// ほぼ真逆の法線ベクトルがあれば削除
-	//	int i;
-	//	int j;
-	//	for (i = 0; i < normals.size(); i++)
-	//	{
-	//		for (j = 0; j < normals.size(); j++)
-	//		{
-	//			if (i != j)
-	//			{
-	//				VECTOR difference = normals[i] + normals[j];
-	//				// 微妙な誤差でも削除
-	//				if (difference.mag() < 0.00001f)
-	//				{
-	//					// コピーをとって全ての要素を消去する
-	//					std::vector<VECTOR> Normals = normals;
-	//					normals.clear();
-	//					for (int k = 0; k < Normals.size(); k++)
-	//					{
-	//						// 真逆の法線ベクトル二つ以外を積む
-	//						if (k != i && k != j)
-	//						{
-	//							normals.push_back(Normals[k]);
-	//						}
-	//					}
-	//					i = 0;
-	//					j = 0;
-	//				}
-	//			}
-	//		}
-	//	}
-
-	//	// ---------- 法線をもとに壁ずりベクトルを作る ----------
-	//	if (normals.size() > 0)
-	//	{
-	//		for (auto nor : normals)
-	//		{
-	//			if (dot(ProgressVector, nor) < 0)
-	//			{
-	//				ProgressVector = cross(ProgressVector, nor);
-	//				ProgressVector = cross(nor, ProgressVector);
-	//			}
-	//		}
-	//	}
-
-	//	// 進めたベクトル分戻す
-	//	mOwner->SetPosition(oldPos);
-
-
-	// }
+	else
+	{
+		mRigidBody = mOwner->GetGame()->GetBullet()->CreateShape(shape, mInitialPosition, mInitialRotation, btScalar(0.03f), btScalar(0.5f));
+	}
 }

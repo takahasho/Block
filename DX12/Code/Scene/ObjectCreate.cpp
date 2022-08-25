@@ -3641,20 +3641,16 @@ void  ObjectCreate::InputComponentData(StructComponent* component)
 		}
 		// 入力前に情報を入れ込む
 
-		float getSize[3] = { selectActor->GetBoxComponent()->GetSize().x,selectActor->GetBoxComponent()->GetSize().y,selectActor->GetBoxComponent()->GetSize().z };
 		float getCenter[3] = { selectActor->GetBoxComponent()->GetPositionGap().x,selectActor->GetBoxComponent()->GetPositionGap().y,selectActor->GetBoxComponent()->GetPositionGap().z };
 
 		for (int i = 0; i < 3; i++)
 		{
-			// Size
-			TextBoxInput(BoxCollider->Size[i], getSize[i]);
 
 			// Center
 			TextBoxInput(BoxCollider->Center[i], getCenter[i]);
 
 		}
 
-		selectActor->GetBoxComponent()->SetSize(VECTOR(getSize[0], getSize[1], getSize[2]));
 		selectActor->GetBoxComponent()->SetPositionGap(VECTOR(getCenter[0], getCenter[1], getCenter[2]));
 
 		// Tabが押されたら次のTextBoxに移動
@@ -4924,7 +4920,6 @@ void ObjectCreate::LoadText(const TCHAR filename[])
 				{
 					if (mActor.back()->GetBoxComponent())
 					{
-						mActor.back()->GetBoxComponent()->SetSize(ColliderSize);
 					}
 				}
 			}
@@ -5054,18 +5049,18 @@ void ObjectCreate::LoadText(const TCHAR filename[])
 		fclose(fp);
 	}
 	mHierarchyWindow.m2D = false;
-	//mSavePosition.clear();
-	//mSaveRotation.clear();
-	//// Actorの位置保存
-	//for (auto actor : mActor)
-	//{
-	//	mSavePosition.push_back(actor->GetPosition());
-	//}
-	//// Actorの回転保存
-	//for (auto actor : mActor)
-	//{
-	//	mSaveRotation.push_back(actor->GetRotation());
-	//}
+	mSavePosition.clear();
+	mSaveRotation.clear();
+	// Actorの位置保存
+	for (auto actor : mActor)
+	{
+		mSavePosition.push_back(actor->GetPosition());
+	}
+	// Actorの回転保存
+	for (auto actor : mActor)
+	{
+		mSaveRotation.push_back(actor->GetRotation());
+	}
 
 	mActorName.clear();
 	// mActorName更新
@@ -5161,9 +5156,9 @@ void ObjectCreate::SaveText()
 					{
 						swprintf(ctxt, MAX_PATH, _T("%s\nsi %06f %06f %06f\nce %06f %06f %06f\n"),
 							uc.c_str(),
-							actor->GetBoxComponent()->GetSize().x,
-							actor->GetBoxComponent()->GetSize().y,
-							actor->GetBoxComponent()->GetSize().z,
+							0,
+							0,
+							0,
 							actor->GetBoxComponent()->GetPositionGap().x,
 							actor->GetBoxComponent()->GetPositionGap().y,
 							actor->GetBoxComponent()->GetPositionGap().z

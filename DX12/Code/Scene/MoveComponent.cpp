@@ -13,24 +13,7 @@ void MoveComponent::Update()
 	{
 		if (mSpeed > 0)
 		{
-			// 位置更新
-			VECTOR pos = mOwner->GetPosition();
-			pos += mOwner->GetProgressVector();
-			mOwner->SetPosition(pos);
-			if (mOwner->GetDashFlg())
-			{
-				mOwner->SetProgressVector(mDirection * mSpeed * 2 * g_elapsedTime);
-			}
-			else
-			{
-				mOwner->SetProgressVector(mDirection * mSpeed * g_elapsedTime);
-			}
 
-			// 回転更新
-			VECTOR angle = mOwner->GetRotation();
-			angle += mOwner->GetAngularVelocity();
-			mOwner->SetRotation(angle);
-			mOwner->SetAngularVelocity(VECTOR(0, 0, 0));
 		}
 	}
 }

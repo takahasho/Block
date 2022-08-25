@@ -30,6 +30,9 @@ public:
 
 	static GameState mGameState;
 	class ObjectCreate* GetObjectCreate()const { return mObjectCreate; }
+	// •¨—‰‰ZƒGƒ“ƒWƒ“
+	class Bullet* bullet;
+	class Bullet* GetBullet()const { return bullet; }
 private:
 	void LoadFile();
 	void CreateObject();

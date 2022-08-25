@@ -31,6 +31,8 @@ public:
     ObjectComponent(class Actor*, int drawOrder = 100);  // コンストラクタ
     ~ObjectComponent();         // デストラクタ
 
+    virtual void Update();
+
     void SetObject();
     void DeleteObject();
     int GetDrawOrder() const { return mDrawOrder; }

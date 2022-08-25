@@ -76,8 +76,7 @@ public:
 		mTitleButton = image;
 		image.fileName = "Resouse\\Texture\\UI\\CreateButton.png";
 		image.position = VECTOR2((float)g_window_width / 2, 450);
-		mCreateButton = image;
-
+		mCreateButton = image;			
 	}
 	~Play() { }
 	const char* GetName() const override { return "Play"; }
@@ -102,6 +101,7 @@ private:
 	CreativeUI mOption;
 	CreativeUI mTitleButton;
 	CreativeUI mCreateButton;
+
 };
 
 //-----------------------------------------------------------------------------

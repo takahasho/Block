@@ -7,7 +7,9 @@
 #include "PlayerInputComponent.h"
 #include "PointLineComponent.h"
 #include "ModelComponent.h"
+#include "RigidBodyComponent.h"
 #include "../MATRIX.h"
+#include "../Bullet/Bullet.h"
 //-------------------------------------------------------------------
 void Title::OnEnter()
 {
@@ -82,8 +84,8 @@ void Title::Input()
 		// カメラを回し続ける
 		addAngle = VECTOR(0, 0.3f, 0);
 		eyeAngle += addAngle;
-		// 客観カメラ
-		SCENE->GetCamera()->UseObjectiveCamera(VECTOR(0, 0, 0), eyeAngle, SCENE->GetCamera()->GetZoom());
+		// 客観カメラ(仮)：2DGameをつくるので適当
+		SCENE->GetCamera()->UseObjectiveCamera(VECTOR(0, 0, 0), VECTOR(30, 0, 0), 15);
 	}
 }
 void Title::Update()
@@ -104,17 +106,26 @@ void Title::OnExit()
 
 void Play::OnEnter()
 {
-
 	// ----- Sceneクラスの取得 -----
 	if (!SCENE)
 	{
-		SCENE = dynamic_cast<Scene*>(mOwnerCompo->GetActor()); // プレイヤーActor
+		SCENE = dynamic_cast<Scene*>(mOwnerCompo->GetActor());
 	}
 	// GameState変更
 	SCENE->GetGame()->SetGameState(GameState::EPlay);
 	if (SCENE->GetGame()->GetActor(_T("Player")))
 	{
 		SCENE->GetGame()->GetActor(_T("Player"))->GetModelComponent()->DeleteObjModel();
+	}
+	// 物理エンジン初期化
+	SCENE->GetGame()->GetBullet()->InitDynamicsWorld();
+	std::vector<class Actor*>mActors = SCENE->GetGame()->GetActors();
+	for (Actor* actor : mActors)
+	{
+		if (actor->GetRigidBodyComponent())
+		{
+			actor->GetRigidBodyComponent()->AddRigidBody();
+		}
 	}
 }
 void Play::Input()
@@ -182,7 +193,7 @@ void Play::Input()
 	else
 	{
 		// 客観カメラ(仮)：2DGameをつくるので適当
-		SCENE->GetCamera()->UseObjectiveCamera(VECTOR(0, 0, 0), VECTOR(1, 0, 0), 20);
+		SCENE->GetCamera()->UseObjectiveCamera(VECTOR(0, 0, 0), VECTOR(30, 0, 0), 15);
 	}
 }
 void Play::Update()
@@ -195,6 +206,7 @@ void Play::Update()
 	}
 	else if (SCENE->GetGame()->GetGameState() == GameState::EPlay)
 	{
+		SCENE->GetGame()->GetBullet()->GetDynamicsWorld()->stepSimulation(g_elapsedTime, 10);
 		RiseUI(mOption);
 		RiseUI(mTitleButton);
 		RiseUI(mCreateButton);
@@ -202,7 +214,9 @@ void Play::Update()
 }
 
 void Play::OnExit()
-{
+{			
+	// 物理エンジン削除
+	SCENE->GetGame()->GetBullet()->DleateDynamicsWorld();
 	RiseUI(mOption);
 	RiseUI(mTitleButton);
 	RiseUI(mCreateButton);
