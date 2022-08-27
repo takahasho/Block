@@ -28,8 +28,7 @@ Actor::Actor(Game* game)
 	, mScale(VECTOR(1.0f, 1.0f, 1.0f))
 	, mColor(VECTOR(1.0f, 1.0f, 1.0f))
 	, mAlpha(1)
-	, mJump(false)
-	, mDash(false)
+	, mColliderType(ColliderType::TypeNone)
 {
 	mGame->AddActor(this);
 }

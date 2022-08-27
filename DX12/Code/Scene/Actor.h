@@ -4,11 +4,22 @@
 #include <vector>
 #include <string>
 #include "../Input/DInput.h"
+// Actor状態
 enum class ActorState
 {
 	EActive,
 	EPause,
 	EDead
+};
+
+// 使用コライダー
+enum class ColliderType
+{
+	Box = 0,
+	Cylinder = 1,
+	Capsule = 2,
+	ModelMesh = 3,
+	TypeNone = 4
 };
 
 class Actor
@@ -31,6 +42,8 @@ protected:
 	
 	std::vector<std::wstring> mUse2DComponent;		// アクター別に使用するコンポーネントを指定
 	std::vector<std::wstring> mUse3DComponent;		// アクター別に使用するコンポーネントを指定
+
+	ColliderType mColliderType;
 public:
 	// ゲッターセッター
 	class PlayerInputComponent* GetInput() { return mPlayerInput; }
@@ -59,6 +72,9 @@ public:
 	
 	std::vector<std::wstring> GetUse2DComponent();
 	std::vector<std::wstring> GetUse3DComponent();
+
+	ColliderType GetColliderType() { return mColliderType; }
+	void SetColliderType(ColliderType colType) { mColliderType = colType; }
 // アクターのTransform情報
 private:
 	//Actorの状態
@@ -71,14 +87,6 @@ private:
 	VECTOR mColor;
 	float mAlpha; // a値
 
-	// 進行ベクトル
-	VECTOR mProgressVector;
-	// 角速度
-	VECTOR mAngularVelocity;
-	// ジャンプFlg
-	bool mJump;                     
-	// ダッシュFlg
-	bool mDash;
 	//Gameクラスのpublicメンバにアクセスするポインタ
 	class Game* mGame;
 	//component配列
@@ -108,19 +116,6 @@ public:
 	void SetColor(const VECTOR& color) { mColor = color; }
 	const float& GetAlpha() const { return mAlpha; }
 	void SetAlpha(const float& value) { mAlpha = value; }
-	
-	// 進行ベクトル
-	const VECTOR& GetProgressVector() const { return mProgressVector; }
-	void SetProgressVector(const VECTOR& vec) { mProgressVector = vec; }
-	// 角速度
-	const VECTOR& GetAngularVelocity() const { return mAngularVelocity; }
-	void SetAngularVelocity(const VECTOR& angle) { mAngularVelocity = angle; }
-	// ジャンプ
-	const bool& GetJumpFlg() const { return mJump; }
-	void SetJumpFlg(const bool& flg) { mJump = flg; }
-	// ダッシュ
-	const bool& GetDashFlg() const { return mDash; }
-	void SetDashFlg(const bool& flg) { mDash = flg; }
 
 	class Game* GetGame() { return mGame; }
 

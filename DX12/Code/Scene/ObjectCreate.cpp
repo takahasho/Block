@@ -3117,8 +3117,10 @@ void ObjectCreate::DeleteObj()
 // コンポーネントの追加
 void ObjectCreate::AddComponent(Actor* actor, std::wstring componentName, const char* path)
 {
+	// 選択中のコンポーネントの数
 	int num = (int)mSelectComponent.size() - 1;
 	bool flag = false;		// すでにコンポーネントが存在するか
+
 	if (componentName._Equal(_T("PlayerInput")))
 	{
 		if (!actor->GetComponent(componentName))
@@ -3138,6 +3140,7 @@ void ObjectCreate::AddComponent(Actor* actor, std::wstring componentName, const 
 		if (!actor->GetComponent(componentName) && !actor->GetComponent(_T("ModelComponent")))
 		{
 			actor->SetComponent(componentName);
+
 			// ボタンが選択中なら
 			if (mSelectButton)
 			{
@@ -3168,6 +3171,7 @@ void ObjectCreate::AddComponent(Actor* actor, std::wstring componentName, const 
 		if (!actor->GetComponent(componentName) && !actor->GetComponent(_T("CapsuleCollider")))
 		{
 			actor->SetComponent(componentName);
+			actor->SetColliderType(ColliderType::Box);
 			// ボタンが選択中なら
 			if (mSelectButton)
 			{
@@ -3179,13 +3183,14 @@ void ObjectCreate::AddComponent(Actor* actor, std::wstring componentName, const 
 	}
 	else if (componentName._Equal(_T("CylinderCollider")))
 	{
-
+		actor->SetColliderType(ColliderType::Cylinder);
 	}
 	else if (componentName._Equal(_T("CapsuleCollider")))
 	{
 		if (!actor->GetComponent(componentName) && !actor->GetComponent(_T("BoxCollider")))
 		{
 			actor->SetComponent(componentName);
+			actor->SetColliderType(ColliderType::Capsule);
 			// ボタンが選択中なら
 			if (mSelectButton)
 			{
@@ -3238,6 +3243,8 @@ void ObjectCreate::AddComponent(Actor* actor, std::wstring componentName, const 
 			}
 		}
 	}
+
+
 	if (flag)
 	{
 		mSelectComponent.back()->SetMetaData();
@@ -5156,9 +5163,9 @@ void ObjectCreate::SaveText()
 					{
 						swprintf(ctxt, MAX_PATH, _T("%s\nsi %06f %06f %06f\nce %06f %06f %06f\n"),
 							uc.c_str(),
-							0,
-							0,
-							0,
+							0.f,
+							0.f,
+							0.f,
 							actor->GetBoxComponent()->GetPositionGap().x,
 							actor->GetBoxComponent()->GetPositionGap().y,
 							actor->GetBoxComponent()->GetPositionGap().z

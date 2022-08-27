@@ -4,12 +4,6 @@
 #include "../VECTOR.h"
 #include <vector>
 
-// ここからどのコライダーが使われているか
-enum class ColliderType
-{
-    Box, Cylinder, Capsule, ModelMesh
-};
-
 class ColliderComponent :
     public Component
 {
@@ -97,7 +91,6 @@ public:
     VECTOR GetPositionGap() { return mPositionGap; }
     VECTOR GetRotation();
     std::vector<FaceInfo*> GetFace() const { return mFaces; }
-    ColliderType GetColliderType() const { return mType; }
     VECTOR GetCenter();
     float GetMaxDistance() { return mMaxDistance; }
 protected:
@@ -119,8 +112,6 @@ protected:
     float mSaveHeight;
     float mSaveRadius;
     GameState mSaveState;
-
-    ColliderType mType;
 public:
     // 頂点情報法線情報の更新
     virtual void SetVerticesNormals();

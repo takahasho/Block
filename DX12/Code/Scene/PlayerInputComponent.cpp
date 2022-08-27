@@ -113,20 +113,6 @@ void PlayerInputComponent::ProcessInput()
 				direction = XMVector3Transform(direction, rotationMat);
 				SetDirection(VECTOR(direction.m128_f32[0], direction.m128_f32[1], direction.m128_f32[2]));
 			}
-			// ジャンプ
-			if (KEY_ENTER(SPACE_KEY))
-			{
-				mOwner->SetJumpFlg(true);
-			}
-			// ダッシュ
-			if (KEY(LSHIFT_KEY))
-			{
-				mOwner->SetDashFlg(true);
-			}
-			else
-			{
-				mOwner->SetDashFlg(false);
-			}
 		}
 	}
 }

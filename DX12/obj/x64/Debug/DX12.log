@@ -1,1 +1,28 @@
-﻿  DX12.vcxproj -> C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\DX12.exe
+﻿  Actor.cpp
+  BoxComponent.cpp
+  BoxInputScript.cpp
+  CameraComponent.cpp
+  CapsuleComponent.cpp
+  ColliderComponent.cpp
+  Component.cpp
+  CylinderComponent.cpp
+  Empty.cpp
+  Game.cpp
+  ImageComponent.cpp
+  ModelComponent.cpp
+  ModelMeshComponent.cpp
+  MoveComponent.cpp
+  ObjectComponent.cpp
+  ObjectCreate.cpp
+  ObjectCreateStruct.cpp
+  PlayerInputComponent.cpp
+  PointLineComponent.cpp
+  RigidBodyComponent.cpp
+  コードを生成中...
+  コンパイル中...
+  Scene.cpp
+  SceneState.cpp
+  SphereComponent.cpp
+  StateComponent.cpp
+  コードを生成中...
+  DX12.vcxproj -> C:\Users\kouki\Desktop\Block\DX12\bin\x64\Debug\DX12.exe

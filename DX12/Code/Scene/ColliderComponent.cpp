@@ -10,7 +10,6 @@ ColliderComponent::ColliderComponent(Actor* owner, int order)
 	, mSaveHeight(1)
 	, mSaveRadius(1)
 	, mSaveState(GameState::ETitle)
-	, mType(ColliderType::Box)
 	, mMaxDistance(0)
 {
 }

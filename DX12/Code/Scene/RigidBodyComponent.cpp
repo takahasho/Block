@@ -49,32 +49,42 @@ void RigidBodyComponent::Update()
 	}
 }
 
+// 計算する剛体の追加
 void RigidBodyComponent::AddRigidBody()
 {
 	btCollisionShape* shape = {};
-	if (mOwner->GetBoxComponent())
+	btVector3 Scale = {};
+	btScalar Radius = {};
+	btScalar Height = {};
+
+	std::vector<VECTOR> vertices;
+	switch (mOwner->GetColliderType())
 	{
-		shape = new btBoxShape(btVector3(btScalar(mOwner->GetScale().x / 2), btScalar(mOwner->GetScale().y / 2), btScalar(mOwner->GetScale().z / 2)));
-	}
-	else if (mOwner->GetCylinderComponent())
-	{
-		shape = new btCylinderShapeZ(btVector3(btScalar(mOwner->GetScale().x / 2), btScalar(mOwner->GetScale().y / 2), btScalar(mOwner->GetScale().z / 2)));
-	}
-	else if (mOwner->GetCapsuleComponent())
-	{
-		shape = new btCapsuleShape(btScalar(mOwner->GetCapsuleComponent()->GetRadius() / 2), btScalar(mOwner->GetCapsuleComponent()->GetHeight() / 2));
-	}
-	else if (mOwner->GetModelMeshComponent())
-	{
-		std::vector<VECTOR> vertices = mOwner->GetModelMeshComponent()->UpdateVertex();
+	case ColliderType::Box:
+		Scale = btVector3(btScalar(mOwner->GetScale().x / 2), btScalar(mOwner->GetScale().y / 2), btScalar(mOwner->GetScale().z / 2));
+		shape = new btBoxShape(Scale);
+		break;
+	case ColliderType::Cylinder:
+		Scale = btVector3(btScalar(mOwner->GetScale().x / 2), btScalar(mOwner->GetScale().y / 2), btScalar(mOwner->GetScale().z / 2));
+		shape = new btCylinderShapeZ(Scale);
+		break;
+	case ColliderType::Capsule:
+		Radius = btScalar(mOwner->GetCapsuleComponent()->GetRadius() / 2);
+		Height = btScalar(mOwner->GetCapsuleComponent()->GetHeight() / 2);
+		shape = new btCapsuleShape(Radius, Height);
+		break;
+	case ColliderType::ModelMesh:
+		// Modelの各頂点を取得しBulletに送る
+		vertices = mOwner->GetModelMeshComponent()->UpdateVertex();
 		btConvexHullShape* convexHullShape = new btConvexHullShape();
 		btScalar scaling(1);
 
 		convexHullShape->setLocalScaling(btVector3(scaling, scaling, scaling));
 
-		for (VECTOR vertex:vertices)
+		// 頂点数分回す
+		for (VECTOR vertex : vertices)
 		{
-			btVector3 vtx(vertex.x, vertex.y, vertex.z);			
+			btVector3 vtx(vertex.x, vertex.y, vertex.z);
 			convexHullShape->addPoint(vtx * btScalar(1. / scaling));
 		}
 
@@ -85,13 +95,16 @@ void RigidBodyComponent::AddRigidBody()
 		convexHullShape->calculateLocalInertia(mass, localInertia);
 
 		shape = convexHullShape;
+		break;
 	}
+
+	// Y-0.5fにある場合は床としてmass0それ以外は3
 	if (mOwner->GetPosition().y == -0.5f)
 	{
-		mRigidBody = mOwner->GetGame()->GetBullet()->CreateShape(shape, mInitialPosition, mInitialRotation, btScalar(0.0f), btScalar(1));
+		mRigidBody = mOwner->GetGame()->GetBullet()->CreateShape(shape, mInitialPosition, mInitialRotation, btScalar(0.0f), btScalar(0.3f));
 	}
 	else
 	{
-		mRigidBody = mOwner->GetGame()->GetBullet()->CreateShape(shape, mInitialPosition, mInitialRotation, btScalar(0.03f), btScalar(0.5f));
+		mRigidBody = mOwner->GetGame()->GetBullet()->CreateShape(shape, mInitialPosition, mInitialRotation, btScalar(3), btScalar(0.5f));
 	}
 }

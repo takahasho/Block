@@ -92,26 +92,5 @@ void BoxInputComponent::ProcessInput()
 			direction = XMVector3Transform(direction, rotationMat);
 			SetDirection(VECTOR(direction.m128_f32[0], direction.m128_f32[1], direction.m128_f32[2]));
 		}
-
-		VECTOR angle = mOwner->GetAngularVelocity();
-		if (KEY(O_KEY))
-		{
-			angle.y += 0.1f;
-		}
-
-		if (KEY(P_KEY))
-		{
-			angle.y -= 0.1f;
-		}
-
-		mOwner->SetAngularVelocity(angle);
-
-		// ƒWƒƒƒ“ƒv
-		if (KEY(U_KEY))
-		{
-			mOwner->SetJumpFlg(true);
-		}
-
-
 	}
 }
